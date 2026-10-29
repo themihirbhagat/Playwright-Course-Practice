@@ -4,7 +4,7 @@ test('automate dropdown selection', async ({ page }) => {
   await page.goto('http://localhost:3000/books');
   await page.selectOption('select#categories', 'Fantasy');
   
-  const selectedValue = await page.$eval('select#categories', select => select.value);
+  const selectedValue = await page.$eval<string, HTMLSelectElement>('select#categories', select => select.value);
   expect(selectedValue).toBe('Fantasy');
   
   await expect(page.locator('.book-title >> text=Harry Potter and the Philosopher\'s Stone')).toBeVisible();
@@ -17,7 +17,7 @@ test('retrieve all dropdown options', async ({ page }) => {
 
   const expectedOptions = ['', 'Literature', 'Science Fiction', 'Fantasy'];
 
-  const options = await page.$$eval('select#categories option', options => options.map(option => option.value));  
+  const options = await page.$eval<string, HTMLSelectElement>('select#categories', select => select.value); 
 
   expect(options).toEqual(expectedOptions);
 });
@@ -33,7 +33,7 @@ test('automate dropdown selection', async ({ page }) => {
   await page.selectOption('select#categories', 'Literature');
 
   // TODO: Retrieve and verify the selected value
-  const selectedValue = await page.$eval('select#categories', select => select.value);
+  const selectedValue = await page.$eval<string, HTMLSelectElement>('select#categories', select => select.value);
 
   expect(selectedValue).toBe('Literature');
 

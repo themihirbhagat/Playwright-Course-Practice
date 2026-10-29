@@ -61,11 +61,12 @@ test('handle superhero profile tab', async ({ page, context }) => {
   page.click('text=🦸 Profile');
   const pages = context.pages();
   const profilePage = pages[pages.length - 1];
+  if (!profilePage) throw new Error('Profile page not found');
   
   await profilePage.waitForLoadState('networkidle');
   expect(await profilePage.url()).toBe('http://localhost:3000/profile');
   await expect(profilePage.locator('text=Ironman Profile')).toBeVisible();
 
-  profilePage.close();
-  expect(page).toHaveURL('http://localhost:3000/home');
+  await profilePage.close();
+  await expect(page).toHaveURL('http://localhost:3000/home');
 });
