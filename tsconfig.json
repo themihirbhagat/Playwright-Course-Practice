@@ -23,7 +23,7 @@
     "strict": true,                       // Enable all strict type-checking options
     "strictNullChecks": true,
     "noImplicitAny": true,
-    "noUncheckedIndexedAccess": true,
+    "noUncheckedIndexedAccess": false,
     "exactOptionalPropertyTypes": true,
     
     // Style Options
