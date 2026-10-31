@@ -10,4 +10,10 @@ export class BasePage {
   async navigate(path: string) {
     await this.page.goto(`http://localhost:3000/${path}`);
   }
+  
+  // TODO: Add a method named `navigateToHome` to navigate to the home page
+  async navigateToHome() {
+    await this.page.goto(`http://localhost:3000/home`);
+  }
+
 }
