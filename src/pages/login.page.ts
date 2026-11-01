@@ -12,4 +12,17 @@ export class LoginPage extends BasePage {
     await this.page.fill('#password', password);
     await this.page.click('button[type="submit"]');
   }
+
+  async logout() { 
+    await this.page.click('text=🚪 Logout');
+  }
+
+  // TODO: Add a method to get the login success message locator for verification
+  getWelcomeMessage() {
+    return this.page.locator('h1.text-4xl');
+  }
+
+  get loginButton() {
+    return this.page.locator('text=🔑 Login');
+  }
 }
